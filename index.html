@@ -57,21 +57,31 @@
                 <!-- Nuevos Ajustes Globales -->
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="card-theme">Universo Gráfico</label>
+                        <label for="card-theme">Tema (Colores)</label>
                         <select id="card-theme">
-                            <option value="ull" selected>ULL (Oficial)</option>
-                            <option value="bauhaus">Geométrico (Bauhaus)</option>
-                            <option value="minimal">Dark (Minimalista)</option>
+                            <option value="ull" selected>Oficial (Morado)</option>
+                            <option value="bauhaus">Claro (Blanco)</option>
+                            <option value="minimal">Oscuro (Negro)</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="card-format">Formato</label>
-                        <select id="card-format">
-                            <option value="horizontal" selected>Banner (4:3)</option>
-                            <option value="vertical">Póster (9:13)</option>
-                            <option value="square">Post (1:1)</option>
+                        <label for="card-graphics">Universo Gráfico</label>
+                        <select id="card-graphics">
+                            <option value="ull" selected>Institucional (ULL)</option>
+                            <option value="bauhaus">Geométrico</option>
+                            <option value="minimal">Minimalista</option>
+                            <option value="none">Sin formas</option>
                         </select>
                     </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="card-format">Formato de Tarjeta</label>
+                    <select id="card-format">
+                        <option value="horizontal" selected>Banner (Expandible)</option>
+                        <option value="vertical">Póster (Centrado)</option>
+                        <option value="square">Post (Cuadrado)</option>
+                    </select>
                 </div>
                 
                 <button type="button" id="btn-next-theme" class="btn-primary" style="background-color: var(--color-ull-orange); box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; margin-top: 0; width: 100%;">✨ Cambiar Universo Gráfico</button>
@@ -101,7 +111,7 @@
         <main class="preview-area">
             <div class="preview-container">
                 <!-- Se envolverá aquí lo que queremos descargar -->
-                <div id="card-preview" class="card theme-ull format-horizontal">
+                <div id="card-preview" class="card theme-ull graphics-ull format-horizontal">
                     <!-- Elementos gráficos de la marca ULL -->
                     <div class="shape ull-chevron chevron-top">&gt;&gt;&gt;</div>
                     <div class="shape ull-chevron chevron-bottom">&lt;&lt;&lt;</div>

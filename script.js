@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Selectores de formato y tema
     const themeSelect = document.getElementById("card-theme");
+    const graphicsSelect = document.getElementById("card-graphics");
     const formatSelect = document.getElementById("card-format");
     const btnNextTheme = document.getElementById("btn-next-theme");
 
@@ -102,20 +103,27 @@ document.addEventListener("DOMContentLoaded", () => {
     linkInput.addEventListener("input", updatePreview);
     showQrCheckbox.addEventListener("change", updatePreview);
 
-    // Gestor de formato y tema
+    // Gestores de apariencia
     themeSelect.addEventListener("change", () => {
         cardElement.className = cardElement.className.replace(/\btheme-\S+/g, '');
         cardElement.classList.add(`theme-${themeSelect.value}`);
     });
+
+    graphicsSelect.addEventListener("change", () => {
+        cardElement.className = cardElement.className.replace(/\bgraphics-\S+/g, '');
+        if(graphicsSelect.value !== "none") {
+            cardElement.classList.add(`graphics-${graphicsSelect.value}`);
+        }
+    });
     
-    // Botón mágico para ciclar entre temas
+    // Botón mágico para ciclar entre temas visuales completos
     btnNextTheme.addEventListener("click", () => {
         const options = Array.from(themeSelect.options);
         let currentIndex = options.findIndex(opt => opt.selected);
         let nextIndex = (currentIndex + 1) % options.length;
         themeSelect.selectedIndex = nextIndex;
-        // Lanzamos el evento change para que la tarjeta se actualice
-        themeSelect.dispatchEvent(new Event("change"));
+        graphicsSelect.selectedIndex = nextIndex; // También cicla las formas gráficas asociadas
+        graphicsSelect.dispatchEvent(new Event("change"));
     });
 
     formatSelect.addEventListener("change", () => {

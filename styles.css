@@ -148,8 +148,8 @@ input[type="file"] { padding: 8px; background: #fff; cursor: pointer; border: 1p
 /* OPACITY LAYER FOR BACKGROUND IMAGES */
 .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0, 0.7) 0%, rgba(0,0,0, 0.2) 100%); z-index: 1; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
 .card.has-bg::before { opacity: 1; }
-/* Si es ULL o Bauhaus, el overlay de la imagen que sea mas claro, si es minimal, oscuro */
-.card.theme-ull.has-bg::before { background: linear-gradient(to right, rgba(245, 234, 225, 0.95) 0%, rgba(245, 234, 225, 0.4) 60%, rgba(245, 234, 225, 0) 100%); }
+/* Reducido el difuminado blanco por defecto para que la imagen se vea mas clara */
+.card.theme-ull.has-bg::before { background: linear-gradient(to right, rgba(245, 234, 225, 0.85) 0%, rgba(245, 234, 225, 0.25) 50%, rgba(245, 234, 225, 0) 100%); }
 .card.theme-bauhaus.has-bg::before { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(2px); }
 .card.theme-minimal.has-bg::before { background: linear-gradient(to bottom, rgba(17,17,17, 0.9) 0%, rgba(17,17,17, 0.3) 100%); }
 
@@ -234,23 +234,23 @@ input[type="file"] { padding: 8px; background: #fff; cursor: pointer; border: 1p
 .shape { display: none; position: absolute; z-index: 5; }
 
 /* ULL Shapes */
-.card.theme-ull .ull-chevron { display: block; font-size: 2.5rem; font-weight: 300; letter-spacing: -6px; color: transparent; -webkit-text-stroke: 1px var(--color-ull-purple); z-index: 10; font-family: sans-serif; }
+.card.graphics-ull .ull-chevron { display: block; font-size: 2.5rem; font-weight: 300; letter-spacing: -6px; color: transparent; -webkit-text-stroke: 1px var(--color-ull-purple); z-index: 10; font-family: sans-serif; }
 .chevron-top { top: 20px; left: 20px; }
 /* Mover los chevrones al centro en lugar de a las esquinas inferiores para que no asfixien el QR */
 .chevron-bottom { top: 50%; right: 20px; transform: rotate(180deg); }
 
-.card.theme-ull .ull-shape-quarter { display: block; width: 90px; height: 90px; background-color: var(--color-ull-orange); border-bottom-right-radius: 100%; top: 40%; right: 0; }
-.card.theme-ull .ull-shape-quarter-line { display: block; width: 90px; height: 90px; border: 3px solid var(--color-ull-cyan); border-top-left-radius: 100%; border-right: none; border-bottom: none; top: 35%; right: 50px; }
+.card.graphics-ull .ull-shape-quarter { display: block; width: 90px; height: 90px; background-color: var(--color-ull-orange); border-bottom-right-radius: 100%; top: 40%; right: 0; }
+.card.graphics-ull .ull-shape-quarter-line { display: block; width: 90px; height: 90px; border: 3px solid var(--color-ull-cyan); border-top-left-radius: 100%; border-right: none; border-bottom: none; top: 35%; right: 50px; }
 
 /* Bauhaus Shapes (alejados del footer de la tarjeta) */
-.card.theme-bauhaus .bh-circle-1 { display: block; width: 140px; height: 140px; background-color: var(--color-ull-orange); border-radius: 50%; border: 3px solid #111; top: -20px; right: -20px; }
-.card.theme-bauhaus .bh-square-1 { display: block; width: 120px; height: 120px; background-color: var(--color-ull-yellow); border: 3px solid #111; top: 60%; left: -30px; transform: rotate(25deg); }
-.card.theme-bauhaus .bh-triangle-1 { display: block; width: 0; height: 0; border-left: 60px solid transparent; border-right: 60px solid transparent; border-bottom: 100px solid var(--color-ull-cyan); filter: drop-shadow(3px 3px 0px #111); top: 40%; right: 40px; transform: rotate(-15deg); }
-.card.theme-bauhaus .bh-circle-2 { display: block; width: 80px; height: 80px; border: 6px solid #111; border-radius: 50%; bottom: 40%; right: 15%; }
+.card.graphics-bauhaus .bh-circle-1 { display: block; width: 140px; height: 140px; background-color: var(--color-ull-orange); border-radius: 50%; border: 3px solid #111; top: -20px; right: -20px; }
+.card.graphics-bauhaus .bh-square-1 { display: block; width: 120px; height: 120px; background-color: var(--color-ull-yellow); border: 3px solid #111; top: 60%; left: -30px; transform: rotate(25deg); }
+.card.graphics-bauhaus .bh-triangle-1 { display: block; width: 0; height: 0; border-left: 60px solid transparent; border-right: 60px solid transparent; border-bottom: 100px solid var(--color-ull-cyan); filter: drop-shadow(3px 3px 0px #111); top: 40%; right: 40px; transform: rotate(-15deg); }
+.card.graphics-bauhaus .bh-circle-2 { display: block; width: 80px; height: 80px; border: 6px solid #111; border-radius: 50%; bottom: 40%; right: 15%; }
 
 /* Minimal Shapes */
-.card.theme-minimal .min-line-1 { display: block; width: 2px; height: 150px; background-color: var(--color-ull-cyan); top: 0; right: 50px; }
-.card.theme-minimal .min-rect-1 { display: block; width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.2); top: 50%; left: 50px; border-radius: 50%; }
+.card.graphics-minimal .min-line-1 { display: block; width: 2px; height: 150px; background-color: var(--color-ull-cyan); top: 0; right: 50px; }
+.card.graphics-minimal .min-rect-1 { display: block; width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.2); top: 50%; left: 50px; border-radius: 50%; }
 
 /* =========================================
    RESPONSIVO
