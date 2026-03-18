@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let nextIndex = (currentIndex + 1) % options.length;
         themeSelect.selectedIndex = nextIndex;
         graphicsSelect.selectedIndex = nextIndex; // También cicla las formas gráficas asociadas
+        themeSelect.dispatchEvent(new Event("change"));
         graphicsSelect.dispatchEvent(new Event("change"));
     });
 
