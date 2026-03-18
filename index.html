@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Documentos / Eventos</title>
+    <!-- Estilos de la aplicación -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts para una tipografía moderna predeterminada -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Panel lateral con el formulario -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Creador de Tarjetas</h2>
+                <p>Completa los datos para generar el documento.</p>
+            </div>
+            
+            <form id="card-form">
+                <div class="form-group">
+                    <label for="title">Título</label>
+                    <input type="text" id="title" placeholder="Ej. BIENVENIDA" value="BIENVENIDA">
+                </div>
+
+                <div class="form-group">
+                    <label for="title-size">Tamaño del Título</label>
+                    <select id="title-size">
+                        <option value="small">Pequeño</option>
+                        <option value="medium">Mediano</option>
+                        <option value="large" selected>Grande</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subtitle">Subtítulo</label>
+                    <input type="text" id="subtitle" placeholder="Ej. Jornada de" value="JORNADA DE">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Lugar</label>
+                    <input type="text" id="location" placeholder="Ej. Aula Magna" value="AULA MAGNA DEL AULARIO">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Fecha</label>
+                        <input type="date" id="date" value="2026-10-15">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Hora</label>
+                        <input type="time" id="time" value="10:00">
+                    </div>
+                </div>
+
+                <!-- Nuevos Ajustes Globales -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="card-theme">Universo Gráfico</label>
+                        <select id="card-theme">
+                            <option value="ull" selected>ULL (Oficial)</option>
+                            <option value="bauhaus">Geométrico (Bauhaus)</option>
+                            <option value="minimal">Dark (Minimalista)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-format">Formato</label>
+                        <select id="card-format">
+                            <option value="horizontal" selected>Banner (4:3)</option>
+                            <option value="vertical">Póster (9:13)</option>
+                            <option value="square">Post (1:1)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="show-qr" checked>
+                        Mostrar Código QR
+                    </label>
+                </div>
+
+                <div class="form-group" id="link-group">
+                    <label for="registration-link">Enlace de Inscripción (URL para el QR)</label>
+                    <input type="url" id="registration-link" placeholder="https://ejemplo.com/inscripcion" value="https://miproyecto.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="bg-image">Foto de Fondo (Opcional)</label>
+                    <input type="file" id="bg-image" accept="image/*">
+                </div>
+
+                <button type="button" id="download-btn" class="btn-primary">Descargar Documento</button>
+            </form>
+        </aside>
+
+        <!-- Área principal con la vista previa -->
+        <main class="preview-area">
+            <div class="preview-container">
+                <!-- Se envolverá aquí lo que queremos descargar -->
+                <div id="card-preview" class="card theme-ull format-horizontal">
+                    <!-- Elementos gráficos de la marca ULL -->
+                    <div class="shape ull-chevron chevron-top">&gt;&gt;&gt;</div>
+                    <div class="shape ull-chevron chevron-bottom">&lt;&lt;&lt;</div>
+                    <div class="shape ull-shape-quarter"></div>
+                    <div class="shape ull-shape-quarter-line"></div>
+
+                    <!-- Elementos decorativos (Bauhaus/Geométrico) -->
+                    <div class="shape bh-circle-1"></div>
+                    <div class="shape bh-square-1"></div>
+                    <div class="shape bh-triangle-1"></div>
+                    <div class="shape bh-circle-2"></div>
+                    
+                    <!-- Elementos decorativos (Minimal) -->
+                    <div class="shape min-line-1"></div>
+                    <div class="shape min-rect-1"></div>
+                    
+                    <div class="card-content">
+                        <!-- Cabecera de la tarjeta -->
+                        <div class="card-header">
+                            <h2 id="preview-subtitle">JORNADA DE</h2>
+                            <h1 id="preview-title" class="title-large">BIENVENIDA</h1>
+                        </div>
+                        
+                        <!-- Información del evento (Cajas de color ULL) -->
+                        <div class="card-details">
+                            <div class="detail-item time-date-banner">
+                                <span><span id="preview-date">27/09/2026</span> - <span id="preview-time">10:00</span></span>
+                            </div>
+                            <div class="detail-item location-banner">
+                                <span id="preview-location">AULA MAGNA DEL AULARIO</span>
+                            </div>
+                        </div>
+
+                        <!-- Zona inferior: Logo y QR -->
+                        <div class="card-footer">
+                            <div class="ull-logo-container">
+                                <!-- Logo ULL usando SVG externo -->
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Universidad_de_La_Laguna_%28ULL%29_logo.svg/1024px-Universidad_de_La_Laguna_%28ULL%29_logo.svg.png" crossorigin="anonymous" alt="ULL Logo" id="ull-logo">
+                            </div>
+                            <div id="qr-section">
+                                <p id="qr-label">MÁS INFO</p>
+                                <div id="qrcode-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Librerías de terceros ligeras -->
+    <!-- qrcode.js para generar el código QR en el cliente -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- html2canvas para la descarga del elemento como imagen -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Lógica de la aplicación JS -->
+    <script src="script.js"></script>
+</body>
+</html>
