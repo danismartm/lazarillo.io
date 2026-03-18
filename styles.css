@@ -109,19 +109,38 @@ input[type="file"] { padding: 8px; background: #fff; cursor: pointer; border: 1p
 .card.format-vertical { aspect-ratio: auto; min-height: 650px; min-width: 400px; max-width: 450px; }
 .card.format-square { aspect-ratio: auto; min-height: 500px; min-width: 500px; max-width: 500px; }
 
-/* Ajustes específicos para que los textos enciendan bien en formatos reducidos */
+/* Ajustes específicos para que los textos encajen bien en formatos reducidos y estén centrados */
+.card-content { flex-grow: 1; }
+
+.card.format-vertical .card-header {
+    margin-top: auto; /* Empuja el contenido hacia el centro vertical */
+    align-items: center;
+    text-align: center;
+}
+.card.format-vertical .card-header h1 {
+    font-size: 2.2rem;
+    width: auto; /* Evita que el contenedor ocupe todo el ancho */
+    clip-path: none; /* Quitamos la flecha en el poster para mejor simetría central */
+    text-align: center;
+    padding: 15px 40px;
+}
+.card.format-vertical .card-details {
+    align-items: center;
+    width: 100%;
+}
 .card.format-vertical .card-footer {
-    flex-direction: column-reverse; /* Pone el logo ULL en la parte inferior y el QR encima */
+    margin-top: auto; /* Empuja el footer hacia el final absoluto equilibrando la parte superior */
+    flex-direction: column-reverse; /* Pone el logo ULL en la parte de abajo absoluta y el QR encima */
     align-items: center;
     text-align: center;
     gap: 25px;
+    width: 100%;
+    padding-bottom: 40px;
 }
 .card.format-vertical #qr-section {
     align-items: center;
 }
-.card.format-vertical .card-header h1 {
-    font-size: 2.2rem;
-}
+
 .card.format-square .card-header h1 {
     font-size: 2.8rem;
 }

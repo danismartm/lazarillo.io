@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Selectores de formato y tema
     const themeSelect = document.getElementById("card-theme");
     const formatSelect = document.getElementById("card-format");
+    const btnNextTheme = document.getElementById("btn-next-theme");
 
     // 2. Referencias a los elementos en la vista previa del canvas (Tarjeta)
     const previewTitle = document.getElementById("preview-title");
@@ -105,6 +106,16 @@ document.addEventListener("DOMContentLoaded", () => {
     themeSelect.addEventListener("change", () => {
         cardElement.className = cardElement.className.replace(/\btheme-\S+/g, '');
         cardElement.classList.add(`theme-${themeSelect.value}`);
+    });
+    
+    // Botón mágico para ciclar entre temas
+    btnNextTheme.addEventListener("click", () => {
+        const options = Array.from(themeSelect.options);
+        let currentIndex = options.findIndex(opt => opt.selected);
+        let nextIndex = (currentIndex + 1) % options.length;
+        themeSelect.selectedIndex = nextIndex;
+        // Lanzamos el evento change para que la tarjeta se actualice
+        themeSelect.dispatchEvent(new Event("change"));
     });
 
     formatSelect.addEventListener("change", () => {
