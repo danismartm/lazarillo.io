@@ -111,7 +111,7 @@ input[type="file"] { padding: 8px; background: #fff; cursor: pointer; border: 1p
 
 /* Ajustes específicos para que los textos enciendan bien en formatos reducidos */
 .card.format-vertical .card-footer {
-    flex-direction: column;
+    flex-direction: column-reverse; /* Pone el logo ULL en la parte inferior y el QR encima */
     align-items: center;
     text-align: center;
     gap: 25px;
