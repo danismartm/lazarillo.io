@@ -153,41 +153,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const downloadBtn = document.getElementById("download-btn");
 
     downloadBtn.addEventListener("click", () => {
-        // 4.1. Preparamos temporalmente los estilos CSS para una captura optima.
+        // 4.1. Preparamos temporalmente los estilos CSS para una captura optima en móvil desactivando el Zoom
+        document.body.classList.add("capturing");
+        
         const originalShadow = cardElement.style.boxShadow;
         cardElement.style.boxShadow = "none";
         cardElement.style.borderRadius = "0px";
 
-        // Usamos la libreria html2canvas
-        html2canvas(cardElement, {
-            scale: 2,               
-            useCORS: true,          
-            backgroundColor: "#fff" 
-        }).then((canvas) => {
-            // 4.2. Restaurar diseño de preview en la web
-            cardElement.style.boxShadow = originalShadow;
-            cardElement.style.borderRadius = "12px";
+        // Dejar al navegador reconstruir la pantalla con el tamaño nativo durante 100ms
+        setTimeout(() => {
+            // Usamos la libreria html2canvas
+            html2canvas(cardElement, {
+                scale: 2,               
+                useCORS: true,          
+                backgroundColor: "#fff" 
+            }).then((canvas) => {
+                // 4.2. Restaurar diseño de preview en la web (reavivir móvil)
+                document.body.classList.remove("capturing");
+                cardElement.style.boxShadow = originalShadow;
+                cardElement.style.borderRadius = "12px";
 
-            // 4.3. Parseamos a DataURI PNG
-            const imageURI = canvas.toDataURL("image/png");
+                // 4.3. Parseamos a DataURI PNG
+                const imageURI = canvas.toDataURL("image/png");
 
-            // 4.4. Trigger de la descarga desde el navegador
-            let baseName = titleInput.value.trim().replace(/\s+/g, "_") || "Documento";
-            let fileName = `${baseName}_ID.png`;
+                // 4.4. Trigger de la descarga desde el navegador
+                let baseName = titleInput.value.trim().replace(/\s+/g, "_") || "Documento";
+                let fileName = `${baseName}_ID.png`;
 
-            const tempLink = document.createElement("a");
-            tempLink.download = fileName;
-            tempLink.href = imageURI;
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
+                const tempLink = document.createElement("a");
+                tempLink.download = fileName;
+                tempLink.href = imageURI;
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
 
-        }).catch((err) => {
-            console.error("Fallo al exportar el documento", err);
-            alert("No se pudo generar la tarjeta.");
-            cardElement.style.boxShadow = originalShadow;
-            cardElement.style.borderRadius = "12px";
-        });
+            }).catch((err) => {
+                console.error("Fallo al exportar el documento", err);
+                alert("No se pudo generar la tarjeta.");
+                document.body.classList.remove("capturing");
+                cardElement.style.boxShadow = originalShadow;
+                cardElement.style.borderRadius = "12px";
+            });
+        }, 150);
     });
 
     // 5. Arranque inicial
