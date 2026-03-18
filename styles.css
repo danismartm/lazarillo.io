@@ -104,9 +104,10 @@ input[type="file"] { padding: 8px; background: #fff; cursor: pointer; border: 1p
 }
 
 /* FORMATS */
-.card.format-horizontal { aspect-ratio: 4 / 3; min-width: 480px; max-width: 600px; }
-.card.format-vertical { aspect-ratio: 9 / 13; min-width: 400px; max-width: 500px; }
-.card.format-square { aspect-ratio: 1 / 1; min-width: 500px; max-width: 500px; }
+/* Usar auto en el aspect-ratio y aplicar min-height salva el contenido de ser cortado (overflow: hidden) si se introducen títulos larguísimos, salvando así el QR */
+.card.format-horizontal { aspect-ratio: auto; min-height: 420px; min-width: 480px; max-width: 600px; }
+.card.format-vertical { aspect-ratio: auto; min-height: 650px; min-width: 400px; max-width: 450px; }
+.card.format-square { aspect-ratio: auto; min-height: 500px; min-width: 500px; max-width: 500px; }
 
 /* Ajustes específicos para que los textos enciendan bien en formatos reducidos */
 .card.format-vertical .card-footer {
